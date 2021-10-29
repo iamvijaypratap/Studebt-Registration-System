@@ -72,8 +72,8 @@ def Admin_Log_In():
             if user==validateData.Username and passw==validateData.Password:
                 session['user'] = user
                 return redirect("/show")
-        else:
-            flash("Invalid Credentials","danger")
+            else:
+                flash("Invalid Credentials","danger")
     return render_template("admin.html")
 @app.route('/logout', methods=['GET', 'POST'])
 def Logout():
