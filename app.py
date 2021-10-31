@@ -47,7 +47,7 @@ def Signup():
             flash("Password too Short","danger")
         elif Admin_Signup.query.filter_by(Email=Email).first():
             flash("Email already Exists","danger")
-        elif Password==Confirmpassword:
+        elif Password!=Confirmpassword:
             flash("Password did not match !","danger")
         else:
             EntryToDatabase = Admin_Signup(Name=Name,
