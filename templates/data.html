@@ -26,13 +26,75 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
              
             </ul>
+            
             <a class="btn btn-danger" href="/logout">Log Out</a>
           </div>
         </div>
       </nav>
 
      <div class="container my-5 card">
-        <table class="table">
+       <div class="row mt-3">
+         <div class="col-lg-10">
+       
+        <form action="/search" method="POST" class="d-flex  mb-3">
+          <input class="form-control me-2" name = "search" type="search" placeholder="Search by Applied_for Category" aria-label="Search">
+          <button class="btn btn-success" type="submit">Search</button>
+        </form>
+      
+      {% if data %}
+         <h3 style="color: red;">{{len}} Results Found !</h3> 
+      <table class="table">
+        
+        <thead>
+        
+        
+          <tr>
+            <th scope="col">Sno</th>
+            <th scope="col">Student Name</th>
+            <th scope="col">College Name</th>
+            <th scope="col">Specialistion</th>
+            <th scope="col">Degree Name</th>
+            <th scope="col">Applied For</th>
+            <th scope="col">Phone Number</th>
+            <th scope="col">Email Id</th>
+            <th scope="col">Location</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Notes</th>
+            <th>Actions[Update:Delete]</th>
+          </tr>
+        </thead>
+        <tbody>  
+          
+      {% for data in data %}
+      <tr>
+        <th scope="row">{{loop.index}}</th>
+        <td>{{data.Name}}</td>
+        <td>{{data.College_Name}} </td>
+        <td> {{data.Specialistion}} </td>
+        <td> {{data.Degree_Name}} </td>
+        <td> {{data.Applied_for}} </td>
+        <td>{{data.phone}} </td>
+        <td> {{data.emailid}} </td>
+        <td> {{data.location}} </td>
+        <td> {{data.Gender}} </td>
+        <td> {{data.notes}} </td>
+        <td>
+          <a href="/update/{{data.sno}}" type="button" class="btn btn-danger btn-sm">Update</button>
+          <a href="/delete/{{data.sno}}" type="button" class="btn btn-danger btn-sm mx-3">Delete</button>
+          
+      </td>
+      </tr>   
+    
+      {% endfor %}
+</tbody>
+</table>
+  
+      
+      
+      {% else %}
+        <table class="table table-striped">
+          
+        
         
             <thead>
             
@@ -49,11 +111,10 @@
                 <th scope="col">Location</th>
                 <th scope="col">Gender</th>
                 <th scope="col">Notes</th>
-                <th>Actions[Delete]</th>
+                <th>Actions[Update:Delete]</th>
               </tr>
             </thead>
             <tbody>
-             
               {% for data in alldata %}
                 
             
@@ -70,14 +131,18 @@
                     <td> {{data.Gender}} </td>
                     <td> {{data.notes}} </td>
                     <td>
-                      <a href="/delete/{{data.sno}}" type="button" class="btn btn-danger btn-sm">Delete</button>
+                      <a href="/update/{{data.sno}}" type="button" class="btn btn-danger btn-sm">Update</button>
+                      <a href="/delete/{{data.sno}}" type="button" class="btn btn-danger btn-sm mx-3">Delete</button>
+                      
                   </td>
                   </tr>   
                 
                   {% endfor %}
             </tbody>
           </table>
-
+          {% endif %}
+     </div>
+    </div>
      </div>
 
     <!-- Optional JavaScript; choose one of the two! -->

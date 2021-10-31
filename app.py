@@ -47,7 +47,9 @@ def Signup():
             flash("Password too Short","danger")
         elif Admin_Signup.query.filter_by(Email=Email).first():
             flash("Email already Exists","danger")
-        if Password==Confirmpassword:
+        elif Password==Confirmpassword:
+            flash("Password did not match !","danger")
+        else:
             EntryToDatabase = Admin_Signup(Name=Name,
             Email=Email,Username=username,
             Password=Password) 
@@ -55,8 +57,8 @@ def Signup():
             db.session.commit()
             flash("Account Created Successfully Now You Can Log in","success")
             return redirect("login")
-        else:
-            flash("Password did not match !","danger")
+        
+            
      return render_template("signup.html")
 
 
@@ -78,7 +80,7 @@ def Admin_Log_In():
 @app.route('/logout', methods=['GET', 'POST'])
 def Logout():
     session.pop("user")
-    flash("Your Logged Out","danger")
+    flash("You are Logged Out","danger")
     return redirect("/login")
 @app.before_request
 def before_request():
@@ -106,6 +108,42 @@ def AddData():
         flash("Your Registration form has been Submitted","success")
         return render_template("confirmationpage.html")
      return render_template("home.html")
+
+@app.route('/update/<int:sno>', methods=['GET', 'POST'])
+def update(sno):
+    if g.user:
+        if request.method=="POST":
+            Name = request.form.get("name")
+            College_name = request.form.get("college")
+            Specialistion = request.form.get("specialistion")
+            Degree_Name= request.form.get("degree")
+            Applied_For = request.form.get("internship")
+            phone= request.form.get("phone")
+            emailid = request.form.get("email")
+            location = request.form.get("location")
+            gender = request.form.get("gender")
+            notes = request.form.get("notes")
+            print(Name)
+            dataupdate=Tbl_student.query.filter_by(sno=sno).first()
+            dataupdate.Name=Name
+            dataupdate.College_Name=College_name
+            dataupdate.Specialistion=Specialistion
+            dataupdate.Degree_Name=Degree_Name
+            dataupdate.Applied_for=Applied_For
+            dataupdate.phone=phone
+            dataupdate.emailif=emailid
+            dataupdate.location=location
+            dataupdate.Gender=gender
+            dataupdate.notes=notes
+            db.session.add(dataupdate)
+            db.session.commit()
+            return redirect(url_for("ShowData"))
+        dataupdate=Tbl_student.query.filter_by(sno=sno).first()
+        return render_template("update.html",dataupdate=dataupdate)
+    else:
+        return redirect(url_for("Admin_Log_In"))
+    
+
 @app.route('/delete/<int:sno>', methods=['GET', 'POST'])
 def delete(sno):
     if g.user:
@@ -122,6 +160,15 @@ def ShowData():
         return render_template("data.html",alldata=alldata)
     else:
         return redirect("/login")
+@app.route('/search', methods=['POST'])
+def search():
+    if request.method=="POST":
+        search=request.form.get("search")
+        data=Tbl_student.query.filter(Tbl_student.Applied_for.like(search)).all()
+        if len(data)==0:
+            return "No Results Found"
+        else:
+            return render_template("data.html",data=data,len=len(data))
 
 
 

@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Student Registration Form</title>
+    <style>
+       .bd{
+         background-color:#212529;
+       }
+       .d{
+         font-family: cursive;
+         font-weight: bolder;
+         color: white;
+       }
+       .display-3{
+         color: white;
+       }
+    </style>
+  </head>
+  <body class="bd">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/">DataBase Management System</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                </a>
+              </li>
+              
+            </ul>
+              
+              <a class="btn btn-primary btn-success" href="/login" role="button">Admin Pannel</a>
+           
+          </div>
+        </div>
+      </nav>
+
+     <div class="container-fluid">
+        <form action="/update/{{dataupdate.sno}}" method="POST">
+            <div class="container form-group ">
+            <div class="container">
+              <h1 class="display-3 ">Update Registration Form Data</h1>
+            </div>
+              <label class="my-2  "for="formGroupExampleInput"><p class="d">Student Name</p></label>
+              <input type="text" class="form-control" value="{{dataupdate.Name}}"name="name" id="formGroupExampleInput" placeholder= ""required>
+
+              <label class="my-2" for="formGroupExampleInput"><p class="d">College Name</p></label>
+              <input type="text" class="form-control" value="{{dataupdate.College_Name}}" name="college" id="formGroupExampleInput" placeholder="" required>
+
+              <label class="my-2" for="formGroupExampleInput"><p class="d">Specialistion</p></label>
+              <input type="text" class="form-control" value="{{dataupdate.Specialistion}}" name="specialistion" id="formGroupExampleInput" placeholder= "" required>
+
+              <label class="my-2" for="formGroupExampleInput"><p class="d">Degree Name</p></label>
+              <input type="text" class="form-control" value="{{dataupdate.Degree_Name}}" name="degree" id="formGroupExampleInput" placeholder=""required
+              >
+
+              <label class="my-2" class="my-2" for="formGroupExampleInput"><p class="d">Internship Applied For</p></label>
+              <input type="text" class="form-control" value="{{dataupdate.Applied_for}}" name="internship" id="formGroupExampleInput" placeholder=''required>
+
+              <label class="my-2" for="formGroupExampleInput"><p class="d">Phone Number</p></label>
+              <input type="text" class="form-control"value="{{dataupdate.phone}}" name="phone" id="formGroupExampleInput" placeholder=""required>
+
+              <label class="my-2" for="formGroupExampleInput"><p class="d">Email Id</p></label>
+              <input type="email" class="form-control" value="{{dataupdate.emailid}}" name="email" id="formGroupExampleInput" placeholder=""required>
+
+              <label class="my-2" for="formGroupExampleInput"><p class="d">Location</p></label>
+              <input type="text" class="form-control" value="{{dataupdate.location}}" name="location" id="formGroupExampleInput" placeholder=""required>
+
+              <label class="my-2" for="formGroupExampleInput"><p class="d">Gender</p></label>
+                
+                <select class="form-control" value="{{dataupdate.Gender}}" name="gender" id="exampleFormControlSelect1" placeholder= ""required>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+                </select>
+                <label class="my-2" for="formGroupExampleInput"><p class="d">Notes</p></label>
+                <input type="text" class="form-control" value="{{dataupdate.notes}}" name="notes" id="formGroupExampleInput" placeholder=""required>
+              <button type="submit" onclick="clicked()" class="btn btn-success my-3 ">Update</button>
+            </div>
+          
+            </form>
+     
+
+     </div>
+
+
+            
+           
+           
+
+
+
+
+
+
+           
+                    
+     
+
+     
+
+
+
+
+
+
+       
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+    -->
+    <footer class="d">Developed By Vijay Pratap</footer>
+  </body>
+</html>
