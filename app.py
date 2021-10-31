@@ -164,7 +164,7 @@ def ShowData():
 def search():
     if request.method=="POST":
         search=request.form.get("search")
-        data=Tbl_student.query.filter(Tbl_student.Applied_for.like(search)).all()
+        data=Tbl_student.query.filter(Tbl_student.Applied_for.like(f"%{search}%")).all()
         if len(data)==0:
             return "No Results Found"
         else:
